@@ -28,6 +28,8 @@ jobs:
 
     - name: Generate Gradle wrapper
       run: gradle wrapper
+    - name: Ensure AndroidX is enabled
+      run: echo "android.useAndroidX=true" >> gradle.properties
     - name: Commit and push generated wrapper files
       uses: EndBug/add-and-commit@v7
       with:
