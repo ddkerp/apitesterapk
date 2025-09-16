@@ -28,8 +28,6 @@ jobs:
 
     - name: Generate Gradle wrapper
       run: gradle wrapper
-	  
-    # Optional: Commit and push the generated wrapper files
     - name: Commit and push generated wrapper files
       uses: EndBug/add-and-commit@v7
       with:
