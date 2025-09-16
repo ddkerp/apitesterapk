@@ -28,6 +28,15 @@ jobs:
 
     - name: Generate Gradle wrapper
       run: gradle wrapper
+	  
+    # Optional: Commit and push the generated wrapper files
+    - name: Commit and push generated wrapper files
+      uses: EndBug/add-and-commit@v7
+      with:
+        message: "Generate Gradle wrapper"
+        add: 'gradlew, gradlew.bat, gradle/wrapper/*'
+        author_name: 'github-actions'
+        author_email: 'github-actions@users.noreply.github.com'
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
