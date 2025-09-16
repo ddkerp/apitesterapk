@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:padding="12dp">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+
+        <EditText android:id="@+id/endpointInput" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="Endpoint" android:inputType="textUri"/>
+
+        <Spinner android:id="@+id/methodSpinner" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+        <EditText android:id="@+id/paramsInput" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="Params (url-encoded)"
+            android:inputType="textMultiLine" android:minLines="2"/>
+
+        <EditText android:id="@+id/headersInput" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="Headers (Key: Value per line)"
+            android:inputType="textMultiLine" android:minLines="3"/>
+
+        <EditText android:id="@+id/cookiesInput" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="Cookies"
+            android:inputType="text"/>
+
+        <Button android:id="@+id/saveBtn" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="@string/save" android:layout_marginTop="12dp"/>
+    </LinearLayout>
+</ScrollView>
+

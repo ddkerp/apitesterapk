@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">API Tester</string>
+    <string name="call_api">Call API</string>
+    <string name="open_config">Open Config</string>
+    <string name="save">Save</string>
+</resources>
+
