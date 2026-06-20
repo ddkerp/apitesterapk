@@ -14,32 +14,31 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Set up JDK 8
+    - name: Set up JDK 17
       uses: actions/setup-java@v4
       with:
-        java-version: '8'
+        java-version: '17'
         distribution: 'temurin'
         cache: gradle
 
-    - name: Set up Gradle 6.7
-      uses: gradle/actions/setup-gradle@v3
-      with:
-        gradle-version: '6.7'
-
-    - name: Generate Gradle wrapper
-      run: gradle wrapper
-    - name: Ensure AndroidX is enabled
-      run: echo "android.useAndroidX=true" >> gradle.properties
-    - name: Commit and push generated wrapper files
-      uses: EndBug/add-and-commit@v7
-      with:
-        message: "Generate Gradle wrapper"
-        add: 'gradlew, gradlew.bat, gradle/wrapper/*'
-        author_name: 'github-actions'
-        author_email: 'github-actions@users.noreply.github.com'
+    - name: Setup gradle.properties with AndroidX configuration
+      run: |
+        if [ ! -f gradle.properties ]; then
+          cat > gradle.properties << EOF
+        android.useAndroidX=true
+        android.enableJetifier=true
+        EOF
+        else
+          # Ensure AndroidX settings exist without duplicating
+          grep -q "android.useAndroidX" gradle.properties || echo "android.useAndroidX=true" >> gradle.properties
+          grep -q "android.enableJetifier" gradle.properties || echo "android.enableJetifier=true" >> gradle.properties
+        fi
 
     - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
+      run: chmod +x gradlew || true
 
     - name: Build with Gradle
-      run: gradle build
+      run: ./gradlew build
+
+    - name: Run tests
+      run: ./gradlew test
